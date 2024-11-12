@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  my_python_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my_python_app_container
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app  # Монтируем весь проект для разработки
+    ports:
+      - '5000:5000'
+    command: ["python", "main.py"]  # Замените на ваш основной файл скрипта
+    restart: unless-stopped
